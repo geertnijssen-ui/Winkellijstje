@@ -1,0 +1,16 @@
+# Kopieer naar /etc/systemd/system/keep-sync.service en pas het pad/gebruiker aan.
+# sudo systemctl enable --now keep-sync
+[Unit]
+Description=Winkellijstje Google Keep sync
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/winkellijstje/keep-sync
+ExecStart=/home/pi/winkellijstje/keep-sync/.venv/bin/python keep_sync.py --loop
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

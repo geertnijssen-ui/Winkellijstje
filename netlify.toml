@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+  # Bespaar credits: bouw alleen als de build via de build hook (het Update-knopje in de app)
+  # of handmatig in Netlify gestart wordt. Gewone pushes naar GitHub worden overgeslagen.
+  # exit 0 = overslaan, exit 1 = bouwen.
+  ignore = "if [ -n \"$INCOMING_HOOK_URL\" ] || [ \"$FORCE_BUILD\" = \"true\" ]; then exit 1; else exit 0; fi"
+
+[build.environment]
+  NODE_VERSION = "22"
